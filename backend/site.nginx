@@ -1,0 +1,38 @@
+# prev-gen-gui
+limit_req_zone $binary_remote_addr zone=prevgen:10m rate=1r/s;
+
+server {
+  listen 443 ssl;
+  listen 443 quic;
+  server_name prevgen.aonodensetsu.me;
+  root /var/www/prev_gen_gui/frontend;
+  index index.html;
+  include snippets/long.ssl;
+  include snippets/control;
+
+  limit_req zone=prevgen burst=50 nodelay;
+
+  location /api/v1 {
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_cache_bypass $http_upgrade;
+    proxy_set_header Connection keep-alive;
+    proxy_set_header Host $host;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    fastcgi_hide_header Content-Security-Policy;
+    add_header Content-Security-Policy "default-src aonodensetsu.me *.aonodensetsu.me 00t.in *.00t.in 'unsafe-inline' data: blob:";
+    proxy_pass http://prevgen;
+  }
+}
+
+# prev-gen-gui-short
+server {
+  listen 443 ssl;
+  listen 443 quic;
+  server_name p.00t.in;
+  include snippets/short.ssl;
+  limit_req zone=prevgen burst=50 nodelay;
+  return 302 https://prevgen.aonodensetsu.me$request_uri;
+}
+
