@@ -1,0 +1,15 @@
+[Unit]
+Description=Preview Generator GUI
+After=multi-user.target
+
+[Service]
+User=www-data
+Group=www-data
+Type=simple
+Restart=always
+WorkingDirectory=/var/www/prev_gen_gui/backend
+ExecStart=/var/www/prev_gen_gui/backend/server/venv/bin/uvicorn --port 8080 server:app
+
+[Install]
+WantedBy=multi-user.target
+
