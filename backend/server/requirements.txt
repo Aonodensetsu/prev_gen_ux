@@ -1,0 +1,6 @@
+connexion[flask,uvicorn,swagger-ui] #< 3.0.0, >= 2.6.0
+python_dateutil #== 2.6.0
+setuptools #>= 21.0.0
+swagger-ui-bundle #>= 0.0.2
+prev_gen >= 6.0.1
+
