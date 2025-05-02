@@ -1,0 +1,44 @@
+:root {
+    --mdc-theme-primary: #d0bcff;
+    --mdc-theme-secondary: #ccc2dc;
+    --mdc-theme-background: #141218;
+    --mdc-theme-surface: #141218;
+    --mdc-theme-error: #f2b8b5;
+    --mdc-theme-on-primary: #381e72;
+    --mdc-theme-on-secondary: #332d41;
+    --mdc-theme-on-surface: #e6e0e9;
+    --mdc-theme-on-error: #601410;
+    --mdc-button-on-surface: #49454f;
+    --mdc-outlined-button-outline-color: #938f99;
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --mdc-theme-primary: #6750a4;
+        --mdc-theme-secondary: #625b71;
+        --mdc-theme-background: #fef7ff;
+        --mdc-theme-surface: #fef7ff;
+        --mdc-theme-error: #b3261e;
+        --mdc-theme-on-primary: #ffffff;
+        --mdc-theme-on-secondary: #ffffff;
+        --mdc-theme-on-surface: #1d1b20;
+        --mdc-theme-on-error: #ffffff;
+        --mdc-button-on-surface: #e7e0ec;
+        --mdc-outlined-button-outline-color: #79747e;
+    }
+}
+
+body {
+    margin: 0;
+    border: 0;
+    padding: 0;
+    background: var(--mdc-theme-surface);
+    color: var(--mdc-theme-on-surface);
+    overflow: hidden;
+}
+
+canvas {
+    border: 0;
+    border-radius: 4px;
+    margin: 0;
+}
