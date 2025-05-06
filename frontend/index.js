@@ -31,6 +31,11 @@ viewport
         friction: 0.93  // higher is more slippery
     });
 
+// load font
+await new FontFace('Nunito', 'url(fonts/nunito.woff2)').load().then(f => {
+    document.fonts.add(f);
+});
+
 // manage colors
 const p = new Palette({app, viewport});
 
