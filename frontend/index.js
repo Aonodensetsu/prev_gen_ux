@@ -1,4 +1,5 @@
 import { Color } from './color.js';
+import { Palette } from './palette.js';
 
 // initialize Material Design elements
 mdc.autoInit();
@@ -30,18 +31,9 @@ viewport
         friction: 0.93  // higher is more slippery
     });
 
-// HELLO WORLD
-const text = new PIXI.Text('canvas', {
-    fontFamily: 'Arial',
-    fontSize: 36,
-    fill: 0xffffff,
-    align: 'center'
-});
-text.anchor.set(0.5);
-text.x = app.renderer.width / 2;
-text.y = app.renderer.height / 2;
+// manage colors
+const p = new Palette({app, viewport});
 
-viewport.addChild(text);
 
 
 
