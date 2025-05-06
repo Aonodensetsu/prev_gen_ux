@@ -126,7 +126,6 @@ export class Palette {
         return this;
     }
 
-
     clickSettings() {
         function t(e) { return e.parentElement.MDCTextField; }
         function s(e) { return e.MDCSwitch; }
