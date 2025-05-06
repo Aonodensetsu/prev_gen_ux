@@ -20,8 +20,6 @@ export class Color {
         return Math.max(Math.min(v, max), min);
     }
 
-
-
     static gammaToLinear(c) {
         return c >= 0.04045 ? Math.pow((c + 0.055) / 1.055, 2.4) : c / 12.92;
     }
@@ -45,6 +43,9 @@ export class Color {
         return Color.fromHexNum(parseInt(hex.replace('#', ''), 16));
     }
 
+    static fromOklch({L, C, h}) {
+        return Color.fromOklab({L: L / 100, a: C * Math.cos(h * Math.PI / 180), b: C * Math.sin(h * Math.PI / 180)});
+    }
     static fromVar(val) {
         return Color.fromHex(getComputedStyle(document.body).getPropertyValue(val));
     }
@@ -79,6 +80,15 @@ export class Color {
             L: l * +0.2104542553 + m * +0.7936177850 + s * -0.0040720468,
             a: l * +1.9779984951 + m * -2.4285922050 + s * +0.4505937099,
             b: l * +0.0259040371 + m * +0.7827717662 + s * -0.8086757660
+        };
+    }
+
+    get oklch() {
+        const {L, a, b} = this.oklab;
+        return {
+            L: L * 100,
+            C: Math.sqrt(a * a + b * b),
+            h: (Math.atan2(b, a) * 180 / Math.PI % 360 + 360) % 360
         };
     }
 }
