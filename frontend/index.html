@@ -115,5 +115,211 @@
       </div>
     </div>
   </form>
+  <form popover=manual id=editsettings>
+    <div class='smol values values-settings'>
+      <label data-mdc-auto-init=MDCTextField class='mdc-text-field mdc-text-field--outlined'>
+          <span class=mdc-notched-outline>
+            <span class=mdc-notched-outline__leading></span>
+            <span class=mdc-notched-outline__notch>
+              <span class=mdc-floating-label id=grid_height_label>Grid Height</span>
+            </span>
+            <span class=mdc-notched-outline__trailing></span>
+          </span>
+        <input type=number class=mdc-text-field__input aria-labelledby=grid_height_label name=grid_height>
+        <span class='mdc-text-field__affix mdc-text-field__affix--suffix'>px</span>
+      </label>
+      <label data-mdc-auto-init=MDCTextField class='mdc-text-field mdc-text-field--outlined'>
+          <span class=mdc-notched-outline>
+            <span class=mdc-notched-outline__leading></span>
+            <span class=mdc-notched-outline__notch>
+             <span id=grid_width_label class=mdc-floating-label>Grid Width</span>
+            </span>
+            <span class=mdc-notched-outline__trailing></span>
+          </span>
+        <input type=number class=mdc-text-field__input aria-labelledby=grid_width_label name=grid_width>
+        <span class='mdc-text-field__affix mdc-text-field__affix--suffix'>px</span>
+      </label>
+      <label data-mdc-auto-init=MDCTextField class='mdc-text-field mdc-text-field--outlined'>
+          <span class=mdc-notched-outline>
+            <span class=mdc-notched-outline__leading></span>
+            <span class=mdc-notched-outline__notch>
+              <span id=bar_height_label class=mdc-floating-label>Bar Height</span>
+            </span>
+            <span class=mdc-notched-outline__trailing></span>
+          </span>
+        <input type=number class=mdc-text-field__input aria-labelledby=bar_height_label name=bar_height>
+        <span class='mdc-text-field__affix mdc-text-field__affix--suffix'>px</span>
+      </label>
+      <label data-mdc-auto-init=MDCTextField class='mdc-text-field mdc-text-field--outlined'>
+          <span class=mdc-notched-outline>
+            <span class=mdc-notched-outline__leading></span>
+            <span class=mdc-notched-outline__notch>
+              <span id=name_offset_label class=mdc-floating-label>Name Offset</span>
+            </span>
+            <span class=mdc-notched-outline__trailing></span>
+          </span>
+        <input type=number class=mdc-text-field__input aria-labelledby=name_offset_label name=name_offset>
+        <span class='mdc-text-field__affix mdc-text-field__affix--suffix'>px</span>
+      </label>
+      <label data-mdc-auto-init=MDCTextField class='mdc-text-field mdc-text-field--outlined'>
+          <span class=mdc-notched-outline>
+            <span class=mdc-notched-outline__leading></span>
+            <span class=mdc-notched-outline__notch>
+              <span id=hex_offset_label class=mdc-floating-label>Hex Offset</span>
+            </span>
+            <span class=mdc-notched-outline__trailing></span>
+          </span>
+        <input type=number class=mdc-text-field__input aria-labelledby=hex_offset_label name=hex_offset>
+        <span class='mdc-text-field__affix mdc-text-field__affix--suffix'>px</span>
+      </label>
+      <label data-mdc-auto-init=MDCTextField class='mdc-text-field mdc-text-field--outlined'>
+          <span class=mdc-notched-outline>
+            <span class=mdc-notched-outline__leading></span>
+            <span class=mdc-notched-outline__notch>
+              <span id=hex_offset_nameless_label class=mdc-floating-label>Hex Offset Nameless</span>
+            </span>
+            <span class=mdc-notched-outline__trailing></span>
+          </span>
+        <input type=number class=mdc-text-field__input aria-labelledby=hex_offset_nameless_label name=hex_offset_nameless>
+        <span class='mdc-text-field__affix mdc-text-field__affix--suffix'>px</span>
+      </label>
+      <label data-mdc-auto-init=MDCTextField class='mdc-text-field mdc-text-field--outlined'>
+          <span class=mdc-notched-outline>
+            <span class=mdc-notched-outline__leading></span>
+            <span class=mdc-notched-outline__notch>
+              <span id=desc_offset_x_label class=mdc-floating-label>Description Offset X</span>
+            </span>
+            <span class=mdc-notched-outline__trailing></span>
+          </span>
+        <input type=number class=mdc-text-field__input aria-labelledby=desc_offset_x_label name=desc_offset_x>
+        <span class='mdc-text-field__affix mdc-text-field__affix--suffix'>px</span>
+      </label>
+      <label data-mdc-auto-init=MDCTextField class='mdc-text-field mdc-text-field--outlined'>
+          <span class=mdc-notched-outline>
+            <span class=mdc-notched-outline__leading></span>
+            <span class=mdc-notched-outline__notch>
+              <span id=desc_offset_y_label class=mdc-floating-label>Description Offset Y</span>
+            </span>
+            <span class=mdc-notched-outline__trailing></span>
+          </span>
+        <input type=number class=mdc-text-field__input aria-labelledby=desc_offset_y_label name=desc_offset_y>
+        <span class='mdc-text-field__affix mdc-text-field__affix--suffix'>px</span>
+      </label>
+      <label data-mdc-auto-init=MDCTextField class='mdc-text-field mdc-text-field--outlined'>
+          <span class=mdc-notched-outline>
+            <span class=mdc-notched-outline__leading></span>
+            <span class=mdc-notched-outline__notch>
+              <span id=name_size_label class=mdc-floating-label>Name Size</span>
+            </span>
+            <span class=mdc-notched-outline__trailing></span>
+          </span>
+        <input type=number class=mdc-text-field__input aria-labelledby=name_size_label name=name_size>
+        <span class='mdc-text-field__affix mdc-text-field__affix--suffix'>px</span>
+      </label>
+      <label data-mdc-auto-init=MDCTextField class='mdc-text-field mdc-text-field--outlined'>
+          <span class=mdc-notched-outline>
+            <span class=mdc-notched-outline__leading></span>
+            <span class=mdc-notched-outline__notch>
+              <span id=hex_size_label class=mdc-floating-label>Hex Size</span>
+            </span>
+            <span class=mdc-notched-outline__trailing></span>
+          </span>
+        <input type=number class=mdc-text-field__input aria-labelledby=hex_size_label name=hex_size>
+        <span class='mdc-text-field__affix mdc-text-field__affix--suffix'>px</span>
+      </label>
+      <label data-mdc-auto-init=MDCTextField class='mdc-text-field mdc-text-field--outlined'>
+          <span class=mdc-notched-outline>
+            <span class=mdc-notched-outline__leading></span>
+            <span class=mdc-notched-outline__notch>
+              <span id=hex_size_nameless_label class=mdc-floating-label>Hex Size Nameless</span>
+            </span>
+            <span class=mdc-notched-outline__trailing></span>
+          </span>
+        <input type=number class=mdc-text-field__input aria-labelledby=hex_size_nameless_label name=hex_size_nameless>
+        <span class='mdc-text-field__affix mdc-text-field__affix--suffix'>px</span>
+      </label>
+      <label data-mdc-auto-init=MDCTextField class='mdc-text-field mdc-text-field--outlined'>
+          <span class=mdc-notched-outline>
+            <span class=mdc-notched-outline__leading></span>
+            <span class=mdc-notched-outline__notch>
+              <span id=desc_size_label class=mdc-floating-label>Description Size</span>
+            </span>
+            <span class=mdc-notched-outline__trailing></span>
+          </span>
+        <input type=number class=mdc-text-field__input aria-labelledby=desc_size_label name=desc_size>
+        <span class='mdc-text-field__affix mdc-text-field__affix--suffix'>px</span>
+      </label>
+    </div>
+    <div class=settings-last>
+      <div class='smol settings-last-inner'>
+        <div class=smol>
+          <label for=show_hash>Show Hash</label>
+          <button data-mdc-auto-init=MDCSwitch id=show_hash class='mdc-switch mdc-switch--unselected' type=button role=switch aria-checked=false>
+            <div class=mdc-switch__track></div>
+            <div class=mdc-switch__handle-track>
+              <div class=mdc-switch__handle>
+                <div class=mdc-switch__shadow>
+                  <div class=mdc-elevation-overlay></div>
+                </div>
+                <div class=mdc-switch__ripple></div>
+                <div class=mdc-switch__icons>
+                  <svg class='mdc-switch__icon mdc-switch__icon--on' viewBox='0 0 24 24'>
+                    <path d='M19.69,5.23L8.96,15.96l-4.23-4.23L2.96,13.5l6,6L21.46,7L19.69,5.23z' />
+                  </svg>
+                  <svg class='mdc-switch__icon mdc-switch__icon--off' viewBox='0 0 24 24'>
+                    <path d='M20 13H4v-2h16v2z' />
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <span class=mdc-switch__focus-ring-wrapper>
+                <div class=mdc-switch__focus-ring></div>
+              </span>
+          </button>
+        </div>
+        <div class=smol>
+          <label for=hex_upper>Hex Upper</label>
+          <button data-mdc-auto-init=MDCSwitch id=hex_upper class='mdc-switch mdc-switch--unselected' type=button role=switch aria-checked=false>
+            <div class=mdc-switch__track></div>
+            <div class=mdc-switch__handle-track>
+              <div class=mdc-switch__handle>
+                <div class=mdc-switch__shadow>
+                  <div class=mdc-elevation-overlay></div>
+                </div>
+                <div class=mdc-switch__ripple></div>
+                <div class=mdc-switch__icons>
+                  <svg class='mdc-switch__icon mdc-switch__icon--on' viewBox='0 0 24 24'>
+                    <path d='M19.69,5.23L8.96,15.96l-4.23-4.23L2.96,13.5l6,6L21.46,7L19.69,5.23z' />
+                  </svg>
+                  <svg class='mdc-switch__icon mdc-switch__icon--off' viewBox='0 0 24 24'>
+                    <path d='M20 13H4v-2h16v2z' />
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <span class=mdc-switch__focus-ring-wrapper>
+                <div class=mdc-switch__focus-ring></div>
+              </span>
+          </button>
+        </div>
+      </div>
+      <div class='smol settings-last-inner'>
+        <div class='smol centerme mdc-touch-target-wrapper'>
+          <button type=submit value=edit class='mdc-button mdc-button--raised'>
+            <span class=mdc-button__ripple></span>
+            <span class=mdc-button__focus-ring></span>
+            <span class=mdc-button__label>Edit</span>
+          </button>
+        </div>
+        <div class='smol mdc-touch-target-wrapper'>
+          <button type=submit value=cancel class='mdc-button mdc-button--outlined'>
+            <span class=mdc-button__ripple></span>
+            <span class=mdc-button__focus-ring></span>
+            <span class=mdc-button__label>Cancel</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
   </body>
 </html>

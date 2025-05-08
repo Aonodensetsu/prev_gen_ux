@@ -97,7 +97,9 @@ export class Tile {
             n.updateText();
             this.el.addChild(n);
             // hex under name
-            let hc = this.color.hex.padStart(6, '0');
+            let hc = this.color.hex.replace('#', '').padStart(6, '0');
+            hc = this.settings.hex_upper ? hc.toUpperCase() : hc.toLowerCase();
+            if (this.settings.show_hash) hc = '#' + hc;
             const h = new PIXI.Text(hc, {
                 fontFamily: 'Nunito',
                 fontSize: this.settings.hex_size,

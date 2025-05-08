@@ -63,7 +63,7 @@ label {
     height: fit-content;
 }
 
-#edittile {
+#editsettings, #edittile {
     max-height: 100vh;
     display: none;
     overflow-x: hidden;
@@ -79,7 +79,7 @@ label {
     gap: 0.5em;
 }
 
-#edittile:popover-open {
+#editsettings:popover-open, #edittile:popover-open {
     display: grid;
 }
 
@@ -171,14 +171,14 @@ input[type=range][orient=vertical]::-ms-thumb {
     border-width: 2px;
 }
 
-.tile-last {
+.settings-last, .tile-last {
     display: grid;
     grid-template-columns: auto;
     gap: 0.2em 1em;
     align-items: center;
 }
 
-.tile-last-inner, .values-inner {
+.settings-last-inner, .tile-last-inner, .values-inner {
     display: grid;
     width: 100%;
     grid-template-columns: auto;
@@ -201,8 +201,14 @@ input[type=range][orient=vertical]::-ms-thumb {
     --mdc-theme-on-primary: var(--mdc-theme-on-secondary);
 }
 
+@media (min-width: 383px) {
+    .settings-last, .values-settings {
+        grid-template-columns: repeat(2, auto);
+    }
+}
+
 @media (min-width: 405px) {
-    .tile-last, .tile-last-inner {
+     .tile-last, .tile-last-inner {
         grid-template-columns: repeat(2, auto);
     }
 }
@@ -214,8 +220,18 @@ input[type=range][orient=vertical]::-ms-thumb {
 }
 
 @media (min-width: 572px) {
+    .settings-last-inner {
+        grid-template-columns: repeat(2, auto);
+    }
+
     .values-settings {
         grid-template-columns: repeat(3, auto);
+    }
+}
+
+@media (min-width: 761px) {
+    .values-settings {
+        grid-template-columns: repeat(4, auto);
     }
 }
 
