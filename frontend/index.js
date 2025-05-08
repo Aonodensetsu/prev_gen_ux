@@ -1,5 +1,6 @@
 import { Color } from './color.js';
 import { Palette } from './palette.js';
+import { Picker } from './picker.js';
 
 // initialize Material Design elements
 mdc.autoInit();
@@ -32,13 +33,26 @@ viewport
     });
 
 // load font
-await new FontFace('Nunito', 'url(fonts/nunito.woff2)').load().then(f => {
+await new FontFace('Nunito', 'url(media/fonts/nunito.woff2)').load().then(f => {
     document.fonts.add(f);
 });
 
 // manage colors
 const p = new Palette({app, viewport});
 
+// viewport manages clicks in world space
+viewport.on('clicked', e => {
+    p.click(e.world);
+});
 
+const c = new Picker();
 
-
+// tie ranges with value display
+document.querySelectorAll('.range input').forEach(el => {
+    const counterpart = document.querySelector('[name=' + el.name + 'Val]');
+    el.oninput = (e) => counterpart.value = e.target.value;
+    counterpart.oninput = (e) => {
+        el.value = e.target.value;
+        c.update(true);
+    };
+});

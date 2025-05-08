@@ -68,7 +68,7 @@ export class Tile {
         // empty tile case
         if (!this.color) {
             this.el.texture = Tile._emptyTex;
-            return this
+            return this;
         }
         // filled tile case
         const g = new PIXI.Graphics();
@@ -155,6 +155,28 @@ export class Tile {
             r.updateText();
             this.el.addChild(r);
         }
+        return this;
+    }
+
+    click() {
+        function t(e) { return e.parentElement.MDCTextField; }
+        const form = document.querySelector('#edittile');
+        if (this.color) {
+            form.lightness.value = this.color.oklch.L;
+            form.chroma.value = this.color.oklch.C;
+            form.hue.value = this.color.oklch.h;
+        } else {
+            form.lightness.value = 0;
+            form.chroma.value = 0;
+            form.hue.value = 0;
+        }
+        t(form.name).value = this.name;
+        t(form.desc_left).value = this.desc_left;
+        t(form.desc_right).value = this.desc_right;
+        form.showPopover();
+        form.dispatchEvent(new Event('colorpicker'));
+        [form.lightness, form.chroma, form.hue].forEach(e => e.dispatchEvent(new Event('input')));
+        this.viewport.pause = true;
         return this;
     }
 

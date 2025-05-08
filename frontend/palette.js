@@ -69,6 +69,8 @@ export class Palette {
         this.rowMinus = rowMinus;
 
         this.fill({row: 0, column: 0}).defaultTiles();
+
+        document.querySelector('#edittile').addEventListener('submit', (e) => this.editTile(e));
     }
 
     moveHandles() {
@@ -76,6 +78,38 @@ export class Palette {
         this.rowMinus.position.set(this.columns * this.settings.grid_width + 20, this.rows * this.settings.grid_height - 220);
         this.colPlus.position.set(this.columns * this.settings.grid_width - 100, this.rows * this.settings.grid_height + 20);
         this.colMinus.position.set(this.columns * this.settings.grid_width - 220, this.rows * this.settings.grid_height + 20);
+        return this;
+    }
+
+    click({x, y}) {
+        const row = Math.floor(y / this.settings.grid_height);
+        if (row < 0) return this;
+        if (row >= this.rows) return this;
+        const column = Math.floor(x / this.settings.grid_width);
+        if (column < 0) return this;
+        if (column >= this.columns) return this;
+        document.querySelector('#edittile [name=cause]').setAttribute('value', `${row},${column}`);
+        this.tiles[row][column].click();
+        return this;
+    }
+
+    editTile(e) {
+        e.preventDefault();
+        if (e.submitter.value === 'cancel') {
+            e.target.hidePopover();
+            this.viewport.pause = false;
+            return;
+        }
+        const pos = e.target.cause.value.split(',').map(i => parseInt(i));
+        if (e.submitter.value === 'clear') {
+            this.tiles[pos[0]][pos[1]].update();
+        }
+        else if (e.submitter.value === 'edit') {
+            const col = Color.fromOklch({L: e.target.lightness.value, C: e.target.chroma.value, h: e.target.hue.value});
+            this.tiles[pos[0]][pos[1]].update(col, {name: e.target.name.value, desc_left: e.target.desc_left.value, desc_right: e.target.desc_right.value});
+        }
+        e.target.hidePopover();
+        this.viewport.pause = false;
         return this;
     }
 
