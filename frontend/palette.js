@@ -68,9 +68,22 @@ export class Palette {
         viewport.addChild(rowMinus);
         this.rowMinus = rowMinus;
 
+        if (!Palette._settings) Palette._settings = PIXI.Texture.from('media/png/SettingsIcon.png');
+        let settingsBtn = new PIXI.Sprite(Palette._settings);
+        settingsBtn.tint = tint;
+        settingsBtn.width = 100;
+        settingsBtn.height = 100;
+        settingsBtn.interactive = true;
+        settingsBtn.on('pointerdown', () => this.clickSettings());
+        settingsBtn.anchor.set(0, 1);
+        settingsBtn.position.set(0, -20);
+        viewport.addChild(settingsBtn);
+        this.settingsBtn = settingsBtn;
+
         this.fill({row: 0, column: 0}).defaultTiles();
 
         document.querySelector('#edittile').addEventListener('submit', (e) => this.editTile(e));
+        document.querySelector('#editsettings').addEventListener('submit', (e) => this.editSettings(e));
     }
 
     moveHandles() {
@@ -109,6 +122,58 @@ export class Palette {
             this.tiles[pos[0]][pos[1]].update(col, {name: e.target.name.value, desc_left: e.target.desc_left.value, desc_right: e.target.desc_right.value});
         }
         e.target.hidePopover();
+        this.viewport.pause = false;
+        return this;
+    }
+
+
+    clickSettings() {
+        function t(e) { return e.parentElement.MDCTextField; }
+        function s(e) { return e.MDCSwitch; }
+        const form = document.querySelector('#editsettings');
+        t(form.grid_height).value = this.settings.grid_height;
+        t(form.grid_width).value = this.settings.grid_width;
+        t(form.bar_height).value = this.settings.bar_height;
+        t(form.name_offset).value = this.settings.name_offset;
+        t(form.hex_offset).value = this.settings.hex_offset;
+        t(form.hex_offset_nameless).value = this.settings.hex_offset_nameless;
+        t(form.desc_offset_x).value = this.settings.desc_offset_x;
+        t(form.desc_offset_y).value = this.settings.desc_offset_y;
+        t(form.name_size).value = this.settings.name_size;
+        t(form.hex_size).value = this.settings.hex_size;
+        t(form.hex_size_nameless).value = this.settings.hex_size_nameless;
+        t(form.desc_size).value = this.settings.desc_size;
+        s(form.show_hash).selected = this.settings.show_hash;
+        s(form.hex_upper).selected = this.settings.hex_upper;
+        form.showPopover();
+        this.viewport.pause = true;
+        return this;
+    }
+
+    editSettings(e) {
+        e.preventDefault();
+        if (e.submitter.value === 'cancel') {
+            e.target.hidePopover();
+            this.viewport.pause = false;
+            return;
+        }
+        const form = e.target;
+        this.settings.grid_height = parseInt(form.grid_height.value);
+        this.settings.grid_width = parseInt(form.grid_width.value);
+        this.settings.bar_height = parseInt(form.bar_height.value);
+        this.settings.name_offset = parseInt(form.name_offset.value);
+        this.settings.hex_offset = parseInt(form.hex_offset.value);
+        this.settings.hex_offset_nameless = parseInt(form.hex_offset_nameless.value);
+        this.settings.desc_offset_x = parseInt(form.desc_offset_x.value);
+        this.settings.desc_offset_y = parseInt(form.desc_offset_y.value);
+        this.settings.name_size = parseInt(form.name_size.value);
+        this.settings.hex_size = parseInt(form.hex_size.value);
+        this.settings.hex_size_nameless = parseInt(form.hex_size_nameless.value);
+        this.settings.desc_size = parseInt(form.desc_size.value);
+        this.settings.show_hash = form.show_hash.MDCSwitch.selected;
+        this.settings.hex_upper = form.hex_upper.MDCSwitch.selected;
+        this.redraw();
+        form.hidePopover();
         this.viewport.pause = false;
         return this;
     }

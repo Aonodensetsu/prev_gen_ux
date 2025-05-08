@@ -16,6 +16,8 @@ export class Settings {
                hex_size = 26,
                hex_size_nameless = 34,
                desc_size = 26,
+               show_hash = false,
+               hex_upper = true
            }) {
         this.grid_height = grid_height;
         this.grid_width = grid_width;
@@ -29,6 +31,8 @@ export class Settings {
         this.hex_size = hex_size;
         this.hex_size_nameless = hex_size_nameless;
         this.desc_size = desc_size;
+        this.show_hash = show_hash;
+        this.hex_upper = hex_upper;
         return this;
     }
 }
