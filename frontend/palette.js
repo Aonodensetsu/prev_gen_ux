@@ -80,10 +80,23 @@ export class Palette {
         viewport.addChild(settingsBtn);
         this.settingsBtn = settingsBtn;
 
+        if (!Palette._info) Palette._info = PIXI.Texture.from('media/png/InfoIcon.png');
+        let infoBtn = new PIXI.Sprite(Palette._info);
+        infoBtn.tint = tint;
+        infoBtn.width = 100;
+        infoBtn.height = 100;
+        infoBtn.interactive = true;
+        infoBtn.on('pointerdown', () => this.showInfo());
+        infoBtn.anchor.set(0, 1);
+        infoBtn.position.set(0, -140);
+        viewport.addChild(infoBtn);
+        this.infoBtn = infoBtn;
+
         this.fill({row: 0, column: 0}).defaultTiles();
 
         document.querySelector('#edittile').addEventListener('submit', (e) => this.editTile(e));
         document.querySelector('#editsettings').addEventListener('submit', (e) => this.editSettings(e));
+        document.querySelector('#info').addEventListener('submit', (e) => this.hideInfo(e));
     }
 
     moveHandles() {
@@ -276,6 +289,17 @@ export class Palette {
             .fill({row: 3, column: 6}, Color.fromHex('fbf1c7'), {name: 'fg0', desc_left: '229', desc_right: '-'})
             .fill({row: 3, column: 7}, Color.fromHex('fe8019'), {name: 'orange', desc_left: '208', desc_right: '-'})
             .moveHandles();
+    }
+
+    showInfo() {
+        this.viewport.pause = true;
+        document.querySelector('#info').showPopover();
+    }
+
+    hideInfo(e) {
+        e.preventDefault();
+        e.target.hidePopover();
+        this.viewport.pause = false;
     }
 }
 

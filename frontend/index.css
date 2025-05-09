@@ -83,6 +83,51 @@ label {
     display: grid;
 }
 
+#info {
+    max-height: 100vh;
+    display: none;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background: inherit;
+    color: inherit;
+    border-radius: 4px;
+    border: 1px var(--mdc-outlined-button-outline-color) solid;
+    padding 2em;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5em;
+}
+
+#info:popover-open {
+    display: flex;
+}
+
+#info p {
+    margin: 0;
+}
+
+#info p img {
+    height: 2em;
+    width: 2em;
+    margin-bottom: -0.65em;
+}
+
+@media (prefers-color-scheme: light) {
+    #infoMsg img {
+        filter: invert(100%);
+    }
+}
+
+.wrap {
+    max-width: 60ch;
+    line-height: 1.5;
+}
+
+.chin {
+    padding-bottom: 1em;
+}
+
 input[type=range][orient=vertical] {
     position: absolute;
     right: 0;
