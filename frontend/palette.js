@@ -92,6 +92,30 @@ export class Palette {
         viewport.addChild(infoBtn);
         this.infoBtn = infoBtn;
 
+        if (!Palette._trash) Palette._trash = PIXI.Texture.from('media/png/EraseIcon.png');
+        let trashBtn = new PIXI.Sprite(Palette._trash);
+        trashBtn.tint = tint;
+        trashBtn.width = 100;
+        trashBtn.height = 100;
+        trashBtn.interactive = true;
+        trashBtn.on('pointerdown', () => this.empty());
+        trashBtn.anchor.set(0, 1);
+        trashBtn.position.set(120, -20);
+        viewport.addChild(trashBtn);
+        this.trashBtn = trashBtn;
+
+        if (!Palette._reset) Palette._reset = PIXI.Texture.from('media/png/ResetIcon.png');
+        let resetBtn = new PIXI.Sprite(Palette._reset);
+        resetBtn.tint = tint;
+        resetBtn.width = 100;
+        resetBtn.height = 100;
+        resetBtn.interactive = true;
+        resetBtn.on('pointerdown', () => this.defaultTiles());
+        resetBtn.anchor.set(0, 1);
+        resetBtn.position.set(120, -140);
+        viewport.addChild(resetBtn);
+        this.resetBtn = resetBtn;
+
         this.fill({row: 0, column: 0}).defaultTiles();
 
         document.querySelector('#edittile').addEventListener('submit', (e) => this.editTile(e));
@@ -249,6 +273,12 @@ export class Palette {
             });
         })
         return this.moveHandles();
+    }
+
+    empty() {
+        while (this.rows > 1) this.deleteRow();
+        while (this.columns > 1) this.deleteColumn();
+        return this.fill({row: 0, column: 0});
     }
 
     defaultTiles() {
