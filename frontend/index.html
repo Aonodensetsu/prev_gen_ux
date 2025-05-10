@@ -7,10 +7,9 @@
     <meta name=viewport content='width=device-width, initial-scale=1'>
     <meta http-equiv=X-UA-Compatible content='IE=edge'>
     <meta name=theme-color content=#B16286>
-    <meta name=author content='Remigiusz Dończyk'>
     <meta name=description content='A web app for generating palette preview images'>
     <meta name=keywords content='palette, preview, generator, image, color'>
-
+	<meta name=author content='Remigiusz Dończyk, Oskar Dembny, Łukasz Michalak, Marek Buława'>
     <meta property=og:title content='Palette Preview Generator'>
     <meta property=og:description content='A web app for generating palette preview images'>
     <meta property=og:locale content=en_US>
@@ -319,6 +318,32 @@
           </button>
         </div>
       </div>
+    </div>
+  </form>
+  <form popover=manual id=info>
+    <p class=wrap>
+      The color picker uses the OkLCh color space.
+      The OkLCh color space is designed for humans to interact with color.
+      Its special property is color changes matched to human perception.
+      It's divided into lightness, chroma (saturation), and hue.
+      The special property allows the change in one value to not affect the others according to (subjective) human perception.
+    </p>
+    <p class='wrap chin'>
+      This allows the picker to be used by feel, rather than calculating exact values.
+      The space is bigger than RGB, so some combinations of values are mapped to a nearby RGB color, those are marked with a dark red bar in the picker.
+    </p>
+    <p><img src=media/png/InfoIcon.png></img>Open this information page</p>
+    <p><img src=media/png/SettingsIcon.png></img>Change palette settings</p>
+    <p><img src=media/png/EraseIcon.png></img>Clean the canvas, emptying the palette</p>
+    <p><img src=media/png/ResetIcon.png></img>Reset the palette to the default showcase</p>
+    <p><img src=media/png/DownloadIcon.png></img>Save the palette to a (special) PNG file</p>
+    <p class=chin><img src=media/png/UploadIcon.png></img>Load a palette from a (special) PNG file</p>
+	<div class='smol mdc-touch-target-wrapper'>
+      <button type=submit class='mdc-button mdc-button--outlined'>
+        <span class=mdc-button__ripple></span>
+        <span class=mdc-button__focus-ring></span>
+        <span class=mdc-button__label>Close</span>
+      </button>
     </div>
   </form>
   </body>
