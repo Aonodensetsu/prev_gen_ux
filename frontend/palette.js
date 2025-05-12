@@ -116,6 +116,30 @@ export class Palette {
         viewport.addChild(resetBtn);
         this.resetBtn = resetBtn;
 
+        if (!Palette._save) Palette._save = PIXI.Texture.from('media/png/UploadIcon.png');
+        let saveBtn = new PIXI.Sprite(Palette._save);
+        saveBtn.tint = tint;
+        saveBtn.width = 100;
+        saveBtn.height = 100;
+        saveBtn.interactive = true;
+        saveBtn.on('pointerdown', () => this.save());
+        saveBtn.anchor.set(0, 1);
+        saveBtn.position.set(240, -20);
+        viewport.addChild(saveBtn);
+        this.saveBtn = saveBtn;
+
+        if (!Palette._load) Palette._load = PIXI.Texture.from('media/png/DownloadIcon.png');
+        let loadBtn = new PIXI.Sprite(Palette._load);
+        loadBtn.tint = tint;
+        loadBtn.width = 100;
+        loadBtn.height = 100;
+        loadBtn.interactive = true;
+        loadBtn.on('pointerdown', () => this.load());
+        loadBtn.anchor.set(0, 1);
+        loadBtn.position.set(240, -140);
+        viewport.addChild(loadBtn);
+        this.loadBtn = loadBtn;
+
         this.fill({row: 0, column: 0}).defaultTiles();
 
         document.querySelector('#edittile').addEventListener('submit', (e) => this.editTile(e));
@@ -319,6 +343,69 @@ export class Palette {
             .fill({row: 3, column: 6}, Color.fromHex('fbf1c7'), {name: 'fg0', desc_left: '229', desc_right: '-'})
             .fill({row: 3, column: 7}, Color.fromHex('fe8019'), {name: 'orange', desc_left: '208', desc_right: '-'})
             .moveHandles();
+    }
+
+    save() {
+        const settings = structuredClone(this.settings);
+        delete settings.anim_time;
+        const palette = this.tiles.map(r => r.map(t => {
+            return {color: t.color?.hex || '#0000', name: t.name, desc_left: t.desc_left, desc_right: t.desc_right};
+        }));
+        fetch('/api/v1/save', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'image/png'
+            },
+            body: JSON.stringify({
+                settings,
+                palette
+            })
+        })
+            .then(r => {
+                if (r.ok) return r.blob();
+                throw new Error(r.status);
+            })
+            .then(t => {
+                const el = document.createElement('a');
+                el.href = URL.createObjectURL(t);
+                el.download = 'palette.png';
+                el.click();
+            })
+            .catch(e => console.log(e.message));
+    }
+
+    load() {
+        const el = document.createElement('input');
+        el.type = 'file';
+        el.onchange = e => {
+            fetch('/api/v1/load', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json'
+                },
+                body: e.target.files[0]
+            })
+                .then(r => {
+                    if (r.ok) return r.json();
+                    throw new Error(r.status);
+                })
+                .then(j => {
+                    if ('settings' in j) this.settings.update(j.settings);
+                    else this.settings.update({});
+                    this.moveHandles();
+                    this.tiles[0][0].redrawStatic();
+                    while (this.rows > j['palette'].length) this.deleteRow();
+                    while (this.columns > Math.max(...j['palette'].map(r => r.length))) this.deleteColumn();
+                    j['palette'].forEach((r, i) => r.forEach((t, k) => {
+                        if (Object.keys(t).length == 0) this.fill({row: i, column: k});
+                        else this.fill({row: i, column: k}, Color.fromHex(t.color), {name: t.name, desc_left: t.desc_left, desc_right: t.desc_right});
+                        this.tiles[i][k].reposition();
+                    }));
+                })
+                .catch(e => console.log(e.message));
+        };
+        el.click();
     }
 
     showInfo() {
