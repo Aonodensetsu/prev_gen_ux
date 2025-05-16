@@ -47,6 +47,12 @@ viewport.on('clicked', e => {
 
 const c = new Picker();
 
+// open help on first start
+if (!Cookies.get('firstTime')) {
+  Cookies.set('firstTime', 'no');
+  document.getElementById('info').togglePopover();
+}
+
 // tie ranges with value display
 document.querySelectorAll('.range input').forEach(el => {
     const counterpart = document.querySelector('[name=' + el.name + 'Val]');
