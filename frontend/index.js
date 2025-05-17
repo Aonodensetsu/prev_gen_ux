@@ -40,6 +40,14 @@ await new FontFace('Nunito', 'url(media/fonts/nunito.woff2)').load().then(f => {
 // manage colors
 const p = new Palette({app, viewport});
 
+// update viewport on mobile devices and on page load
+screen.orientation.addEventListener('change', () => {
+    viewport.top = -280;
+    viewport.left = -20;
+    viewport.fit(false, p.columns * p.settings.grid_width + 160, p.rows * p.settings.grid_height + 420);
+});
+screen.orientation.dispatchEvent(new Event('change'));
+
 // viewport manages clicks in world space
 viewport.on('clicked', e => {
     p.click(e.world);
@@ -49,9 +57,20 @@ const c = new Picker();
 
 // open help on first start
 if (!Cookies.get('firstTime')) {
-  Cookies.set('firstTime', 'no');
-  document.getElementById('info').togglePopover();
+    Cookies.set('firstTime', 'no');
+    document.getElementById('info').togglePopover();
 }
+
+// update canvas sizes on resize
+window.addEventListener('resize', () => {
+    viewport.resize(window.innerWidth, window.innerHeight, viewport.worldWidth, viewport.worldHeight);
+    c.canvases().forEach(el => {
+        el.width = el.clientWidth;
+        el.height = el.clientHeight;
+    });
+    c.update(true);
+    screen.orientation.dispatchEvent(new Event('change'));
+});
 
 // tie ranges with value display
 document.querySelectorAll('.range input').forEach(el => {
