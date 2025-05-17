@@ -58,6 +58,24 @@ label {
     width: 10em;
 }
 
+#recenter {
+    position: absolute;
+    top: 0;
+    right: -100px;
+    width: 100px;
+    height: 100px;
+    transition: right 0.5s ease-in-out 0s;
+}
+
+#recenter.show {
+    right: 0;
+}
+
+#recenter img {
+    width: 100%;
+    height: 100%;
+}
+
 .smol {
     width: fit-content;
     height: fit-content;
@@ -296,3 +314,4 @@ input[type=range][orient=vertical]::-ms-thumb {
 .mdc-text-field__affix--prefix, .mdc-text-field__affix--suffix {
     color: var(--mdc-theme-secondary) !important;
 }
+

@@ -29,7 +29,7 @@ viewport
     .pinch()
     .wheel()
     .decelerate({
-        friction: 0.93  // higher is more slippery
+        friction: 0.93    // higher is more slippery
     });
 
 // load font
@@ -42,15 +42,29 @@ const p = new Palette({app, viewport});
 
 // update viewport on mobile devices and on page load
 screen.orientation.addEventListener('change', () => {
-    viewport.top = -280;
-    viewport.left = -20;
-    viewport.fit(false, p.columns * p.settings.grid_width + 160, p.rows * p.settings.grid_height + 420);
+    viewport.top = p.bounds.top - 20;
+    viewport.left = p.bounds.left - 20;
+    viewport.fit(false, p.bounds.right - p.bounds.left + 40, p.bounds.bottom - p.bounds.top + 40);
 });
 screen.orientation.dispatchEvent(new Event('change'));
 
 // viewport manages clicks in world space
 viewport.on('clicked', e => {
     p.click(e.world);
+});
+
+// recentering
+viewport.on('moved-end', e => {
+    console.log(e);
+    const rec = document.getElementById('recenter');
+    if (
+        e.right < p.bounds.left
+        || e.left > p.bounds.right
+        || e.bottom < p.bounds.top
+        || e.top > p.bounds.bottom
+        || e.scaled < 0.1
+    ) rec.classList.add('show');
+    else rec.classList.remove('show');
 });
 
 const c = new Picker();
@@ -81,3 +95,8 @@ document.querySelectorAll('.range input').forEach(el => {
         c.update(true);
     };
 });
+
+document.getElementById('recenter').addEventListener('click', e => {
+    screen.orientation.dispatchEvent(new Event('change'));
+});
+
