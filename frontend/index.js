@@ -42,9 +42,9 @@ const p = new Palette({app, viewport});
 
 // update viewport on mobile devices and on page load
 screen.orientation.addEventListener('change', () => {
+    viewport.fit(false, p.bounds.right - p.bounds.left + 40, p.bounds.bottom - p.bounds.top + 40);
     viewport.top = p.bounds.top - 20;
     viewport.left = p.bounds.left - 20;
-    viewport.fit(false, p.bounds.right - p.bounds.left + 40, p.bounds.bottom - p.bounds.top + 40);
 });
 screen.orientation.dispatchEvent(new Event('change'));
 

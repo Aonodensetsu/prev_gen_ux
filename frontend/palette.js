@@ -149,7 +149,7 @@ export class Palette {
 
     get bounds() {
         return {
-            left: 0, 
+            left: 0,
             top: -240, // 2 rows of menu icons
             right: this.settings.grid_width * this.columns + 120, // plus minus row icons
             bottom: this.settings.grid_height * this.rows + 120 // plus minus column icons
