@@ -55,7 +55,6 @@ viewport.on('clicked', e => {
 
 // recentering
 viewport.on('moved-end', e => {
-    console.log(e);
     const rec = document.getElementById('recenter');
     if (
         e.right < p.bounds.left
