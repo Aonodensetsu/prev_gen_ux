@@ -19,6 +19,8 @@ export class Palette {
     tiles = [[]]; // 2d list of tiles, rows indexed first
     rows = 1;
     columns = 1;
+    confirmEmpty = null;
+    confirmDefault = null;
 
     constructor({app, viewport, settings = new Settings({})}) {
         if (Palette._self) return Palette._self;
@@ -98,7 +100,7 @@ export class Palette {
         trashBtn.width = 100;
         trashBtn.height = 100;
         trashBtn.interactive = true;
-        trashBtn.on('pointerdown', () => this.empty());
+        trashBtn.on('pointerdown', () => this.actionEmpty());
         trashBtn.anchor.set(0, 1);
         trashBtn.position.set(this.bounds.left + 120, this.bounds.top + 220);
         viewport.addChild(trashBtn);
@@ -110,7 +112,7 @@ export class Palette {
         resetBtn.width = 100;
         resetBtn.height = 100;
         resetBtn.interactive = true;
-        resetBtn.on('pointerdown', () => this.defaultTiles());
+        resetBtn.on('pointerdown', () => this.actionDefaultTiles());
         resetBtn.anchor.set(0, 1);
         resetBtn.position.set(this.bounds.left + 120, this.bounds.top + 100);
         viewport.addChild(resetBtn);
@@ -308,10 +310,42 @@ export class Palette {
         return this.moveHandles();
     }
 
+    actionEmpty() {
+        if (!this.confirmEmpty) {
+            this.trashBtn.tint = Color.fromVar('--mdc-theme-on-error').hexNum;
+            this.confirmEmpty = setTimeout(() => {
+                this.trashBtn.tint = Color.fromVar('--mdc-button-on-surface').hexNum;
+                this.confirmEmpty = null;
+            }, 1000);
+            return;
+        } else {
+            window.clearTimeout(this.confirmEmpty);
+            this.confirmEmpty = null;
+            this.trashBtn.tint = Color.fromVar('--mdc-button-on-surface').hexNum;
+        }
+        return this.empty();
+    }
+
     empty() {
         while (this.rows > 1) this.deleteRow();
         while (this.columns > 1) this.deleteColumn();
         return this.fill({row: 0, column: 0});
+    }
+
+    actionDefaultTiles() {
+        if (!this.confirmDefault) {
+            this.resetBtn.tint = Color.fromVar('--mdc-theme-on-error').hexNum;
+            this.confirmDefault = setTimeout(() => {
+                this.resetBtn.tint = Color.fromVar('--mdc-button-on-surface').hexNum;
+                this.confirmDefault = null;
+            }, 1000);
+            return;
+        } else {
+            window.clearTimeout(this.confirmDefault);
+            this.confirmDefault = null;
+            this.resetBtn.tint = Color.fromVar('--mdc-button-on-surface').hexNum;
+        }
+        return this.defaultTiles();
     }
 
     defaultTiles() {
