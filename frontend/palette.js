@@ -5,9 +5,16 @@ import { Color } from './color.js';
 export class Palette {
     // singleton
     static _self;
+
     // static textures
     static _minus;
     static _plus;
+    static _settings;
+    static _info;
+    static _trash;
+    static _reset;
+    static _load;
+    static _save;
 
     // buttons
     colPlus;
@@ -76,7 +83,7 @@ export class Palette {
         settingsBtn.interactive = true;
         settingsBtn.on('pointerdown', () => this.clickSettings());
         settingsBtn.anchor.set(0, 1);
-        settingsBtn.position.set(this.bounds.left, this.bounds.top + 220);
+        settingsBtn.position.set(this.bounds.left + 120, this.bounds.top + 220);
         viewport.addChild(settingsBtn);
         this.settingsBtn = settingsBtn;
 
@@ -88,7 +95,7 @@ export class Palette {
         infoBtn.interactive = true;
         infoBtn.on('pointerdown', () => this.showInfo());
         infoBtn.anchor.set(0, 1);
-        infoBtn.position.set(this.bounds.left, this.bounds.top + 100);
+        infoBtn.position.set(this.bounds.left, this.bounds.top + 220);
         viewport.addChild(infoBtn);
         this.infoBtn = infoBtn;
 
@@ -99,8 +106,8 @@ export class Palette {
         trashBtn.height = 100;
         trashBtn.interactive = true;
         trashBtn.on('pointerdown', () => this.empty());
-        trashBtn.anchor.set(0, 1);
-        trashBtn.position.set(this.bounds.left + 120, this.bounds.top + 220);
+        trashBtn.anchor.set(1, 1);
+        trashBtn.position.set(this.bounds.right - 120, this.bounds.top - 20);
         viewport.addChild(trashBtn);
         this.trashBtn = trashBtn;
 
@@ -111,8 +118,8 @@ export class Palette {
         resetBtn.height = 100;
         resetBtn.interactive = true;
         resetBtn.on('pointerdown', () => this.defaultTiles());
-        resetBtn.anchor.set(0, 1);
-        resetBtn.position.set(this.bounds.left + 120, this.bounds.top + 100);
+        resetBtn.anchor.set(1, 1);
+        resetBtn.position.set(this.bounds.right - 240, this.bounds.top - 20);
         viewport.addChild(resetBtn);
         this.resetBtn = resetBtn;
 
@@ -124,7 +131,7 @@ export class Palette {
         saveBtn.interactive = true;
         saveBtn.on('pointerdown', () => this.save());
         saveBtn.anchor.set(0, 1);
-        saveBtn.position.set(this.bounds.left + 240, this.bounds.top + 220);
+        saveBtn.position.set(this.bounds.left + 120, this.bounds.top + 340);
         viewport.addChild(saveBtn);
         this.saveBtn = saveBtn;
 
@@ -136,7 +143,7 @@ export class Palette {
         loadBtn.interactive = true;
         loadBtn.on('pointerdown', () => this.load());
         loadBtn.anchor.set(0, 1);
-        loadBtn.position.set(this.bounds.left + 240, this.bounds.top + 100);
+        loadBtn.position.set(this.bounds.left, this.bounds.top + 340);
         viewport.addChild(loadBtn);
         this.loadBtn = loadBtn;
 
@@ -149,8 +156,8 @@ export class Palette {
 
     get bounds() {
         return {
-            left: 0,
-            top: -240, // 2 rows of menu icons
+            left: -240, // 2 rows of menu icons
+            top: -120, // 1 row of menu icons
             right: this.settings.grid_width * this.columns + 120, // plus minus row icons
             bottom: this.settings.grid_height * this.rows + 120 // plus minus column icons
         };
@@ -161,6 +168,8 @@ export class Palette {
         this.rowMinus.position.set(this.bounds.right - 100, this.bounds.bottom - 340);
         this.colPlus.position.set(this.bounds.right - 220, this.bounds.bottom - 100);
         this.colMinus.position.set(this.bounds.right - 340, this.bounds.bottom - 100);
+        this.trashBtn.position.set(this.bounds.right - 120, this.bounds.top + 100);
+        this.resetBtn.position.set(this.bounds.right - 240, this.bounds.top + 100);
         return this;
     }
 
