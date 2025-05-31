@@ -8,13 +8,13 @@
     --mdc-theme-on-secondary: #332d41;
     --mdc-theme-on-surface: #e6e0e9;
     --mdc-theme-on-error: #601410;
-    --mdc-button-on-surface: #49454f;
+    --mdc-button-on-surface: #6f6978;
     --mdc-outlined-button-outline-color: #938f99;
 }
 
 @media (prefers-color-scheme: light) {
     :root {
-        --mdc-theme-primary: #6750a4;
+        --mdc-theme-primary: #9183b2;
         --mdc-theme-secondary: #625b71;
         --mdc-theme-background: #fef7ff;
         --mdc-theme-surface: #fef7ff;
@@ -22,8 +22,8 @@
         --mdc-theme-on-primary: #ffffff;
         --mdc-theme-on-secondary: #ffffff;
         --mdc-theme-on-surface: #1d1b20;
-        --mdc-theme-on-error: #ffffff;
-        --mdc-button-on-surface: #e7e0ec;
+        --mdc-theme-on-error: #601410;
+        --mdc-button-on-surface: #8a868d;
         --mdc-outlined-button-outline-color: #79747e;
     }
 }
@@ -132,7 +132,7 @@ label {
 }
 
 @media (prefers-color-scheme: light) {
-    #infoMsg img {
+    #info p img {
         filter: invert(100%);
     }
 }
