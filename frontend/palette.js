@@ -32,7 +32,7 @@ export class Palette {
         this.viewport = viewport;
         this.settings = settings;
 
-        if (!Palette._plus) Palette._plus = PIXI.Texture.from('media/png/plusIcon.png');
+        if (!Palette._plus) Palette._plus = PIXI.Texture.from('media/buttons/PlusIcon.svg');
         let colPlus = new PIXI.Sprite(Palette._plus);
         colPlus.width = 100;
         colPlus.height = 100;
@@ -51,7 +51,7 @@ export class Palette {
         viewport.addChild(rowPlus);
         this.rowPlus = rowPlus;
 
-        if (!Palette._minus) Palette._minus = PIXI.Texture.from('media/png/MinusIcon.png');
+        if (!Palette._minus) Palette._minus = PIXI.Texture.from('media/buttons/MinusIcon.svg');
         let colMinus = new PIXI.Sprite(Palette._minus);
         colMinus.width = 100;
         colMinus.height = 100;
@@ -70,7 +70,7 @@ export class Palette {
         viewport.addChild(rowMinus);
         this.rowMinus = rowMinus;
 
-        if (!Palette._settings) Palette._settings = PIXI.Texture.from('media/png/SettingsIcon.png');
+        if (!Palette._settings) Palette._settings = PIXI.Texture.from('media/buttons/SettingsIcon.svg');
         let settingsBtn = new PIXI.Sprite(Palette._settings);
         settingsBtn.tint = tint;
         settingsBtn.width = 100;
@@ -82,7 +82,7 @@ export class Palette {
         viewport.addChild(settingsBtn);
         this.settingsBtn = settingsBtn;
 
-        if (!Palette._info) Palette._info = PIXI.Texture.from('media/png/InfoIcon.png');
+        if (!Palette._info) Palette._info = PIXI.Texture.from('media/buttons/InfoIcon.svg');
         let infoBtn = new PIXI.Sprite(Palette._info);
         infoBtn.tint = tint;
         infoBtn.width = 100;
@@ -94,7 +94,7 @@ export class Palette {
         viewport.addChild(infoBtn);
         this.infoBtn = infoBtn;
 
-        if (!Palette._trash) Palette._trash = PIXI.Texture.from('media/png/EraseIcon.png');
+        if (!Palette._trash) Palette._trash = PIXI.Texture.from('media/buttons/EraseIcon.svg');
         let trashBtn = new PIXI.Sprite(Palette._trash);
         trashBtn.tint = tint;
         trashBtn.width = 100;
@@ -106,7 +106,7 @@ export class Palette {
         viewport.addChild(trashBtn);
         this.trashBtn = trashBtn;
 
-        if (!Palette._reset) Palette._reset = PIXI.Texture.from('media/png/ResetIcon.png');
+        if (!Palette._reset) Palette._reset = PIXI.Texture.from('media/buttons/ResetIcon.svg');
         let resetBtn = new PIXI.Sprite(Palette._reset);
         resetBtn.tint = tint;
         resetBtn.width = 100;
@@ -118,7 +118,7 @@ export class Palette {
         viewport.addChild(resetBtn);
         this.resetBtn = resetBtn;
 
-        if (!Palette._save) Palette._save = PIXI.Texture.from('media/png/UploadIcon.png');
+        if (!Palette._save) Palette._save = PIXI.Texture.from('media/buttons/UploadIcon.svg');
         let saveBtn = new PIXI.Sprite(Palette._save);
         saveBtn.tint = tint;
         saveBtn.width = 100;
@@ -130,7 +130,7 @@ export class Palette {
         viewport.addChild(saveBtn);
         this.saveBtn = saveBtn;
 
-        if (!Palette._load) Palette._load = PIXI.Texture.from('media/png/DownloadIcon.png');
+        if (!Palette._load) Palette._load = PIXI.Texture.from('media/buttons/DownloadIcon.svg');
         let loadBtn = new PIXI.Sprite(Palette._load);
         loadBtn.tint = tint;
         loadBtn.width = 100;
