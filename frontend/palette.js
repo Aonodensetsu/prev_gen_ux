@@ -118,7 +118,7 @@ export class Palette {
         viewport.addChild(resetBtn);
         this.resetBtn = resetBtn;
 
-        if (!Palette._save) Palette._save = PIXI.Texture.from('media/buttons/UploadIcon.svg');
+        if (!Palette._save) Palette._save = PIXI.Texture.from('media/buttons/DownloadIcon.svg');
         let saveBtn = new PIXI.Sprite(Palette._save);
         saveBtn.tint = tint;
         saveBtn.width = 100;
@@ -130,7 +130,7 @@ export class Palette {
         viewport.addChild(saveBtn);
         this.saveBtn = saveBtn;
 
-        if (!Palette._load) Palette._load = PIXI.Texture.from('media/buttons/DownloadIcon.svg');
+        if (!Palette._load) Palette._load = PIXI.Texture.from('media/buttons/UploadIcon.svg');
         let loadBtn = new PIXI.Sprite(Palette._load);
         loadBtn.tint = tint;
         loadBtn.width = 100;
