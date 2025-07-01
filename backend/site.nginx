@@ -5,7 +5,7 @@ server {
   listen 443 ssl;
   listen 443 quic;
   server_name prevgen.aonodensetsu.me;
-  root /var/www/prev_gen_gui/frontend;
+  root /var/www/prev_gen_ux/frontend;
   index index.html;
   include snippets/long.ssl;
   include snippets/control;

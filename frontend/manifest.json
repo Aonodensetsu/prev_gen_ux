@@ -3,7 +3,7 @@
   "scope": "/",
   "start_url": "/",
   "name": "Preview Generator GUI",
-  "short_name": "prev_gen_gui",
+  "short_name": "prev_gen_ux",
   "description": "A web app for generating palette preview images",
   "lang": "en",
   "dir": "ltr",
