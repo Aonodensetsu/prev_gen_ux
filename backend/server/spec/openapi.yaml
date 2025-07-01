@@ -4,7 +4,7 @@ openapi: 3.0.3
 info:
   title: Preview Generator API
   description: |
-    A simple interface with the prev_gen library for use within prev_gen_gui.
+    A simple interface with the prev_gen library for use within prev_gen_ux.
   contact:
     name: Remigiusz Dończyk
     email: remok99999@gmail.com
