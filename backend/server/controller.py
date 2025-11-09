@@ -4,10 +4,13 @@ from io import BytesIO
 from prev_gen import Config, Previewer, Reverser
 from PIL import Image, UnidentifiedImageError
 from PIL.PngImagePlugin import PngInfo
-from flask import send_file
 
 
-def POST_save(body=None) -> BytesIO:
+def GET_ping():
+    return 'pong', 200
+
+
+def POST_save(body=None):
     """
     Generate a PNG from GUI
 
@@ -32,7 +35,7 @@ def POST_save(body=None) -> BytesIO:
     return buf, 200, {'Content-Type': 'image/png'}
 
 
-def POST_load(body=None) -> str:
+def POST_load(body=None):
     """
     Load a PNG into GUI
 
@@ -55,7 +58,6 @@ def POST_load(body=None) -> str:
         img2.text = img.text
     except AttributeError:
         return 'Image does not have metadata', 400
-    # TODO: find try/catch cases here
     palette = Reverser(img2)
     json = {}
     sett = palette[0].to_dict()

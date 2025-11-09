@@ -19,6 +19,16 @@ servers:
 - url: /api/v1
   description: The official app service
 paths:
+  /ping:
+    get:
+      summary: Health check
+      x-openapi-router-controller: server.controller
+      operationId: GET_ping
+      responses:
+        200:
+          description: succeeded
+        500:
+          description: failed
   /save:
     post:
       summary: Generate a PNG image from the GUI
