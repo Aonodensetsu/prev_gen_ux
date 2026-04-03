@@ -1,0 +1,13 @@
+services:
+  prev-gen-backend:
+    build:
+      context: .
+      network: host
+    image: local/prev-gen-backend
+    restart: unless-stopped
+    healthcheck:
+      start_period: 30s
+      interval: 60s
+      timeout: 5s
+      retries: 0
+

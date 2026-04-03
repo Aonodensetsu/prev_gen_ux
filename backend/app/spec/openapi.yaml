@@ -22,7 +22,7 @@ paths:
   /ping:
     get:
       summary: Health check
-      x-openapi-router-controller: server.controller
+      x-openapi-router-controller: app.controller
       operationId: GET_ping
       responses:
         200:
@@ -32,7 +32,7 @@ paths:
   /save:
     post:
       summary: Generate a PNG image from the GUI
-      x-openapi-router-controller: server.controller
+      x-openapi-router-controller: app.controller
       operationId: POST_save
       requestBody:
         content:
@@ -57,7 +57,7 @@ paths:
   /load:
     post:
       summary: Load a PNG into GUI
-      x-openapi-router-controller: server.controller
+      x-openapi-router-controller: app.controller
       operationId: POST_load
       requestBody:
         content:

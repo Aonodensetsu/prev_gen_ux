@@ -4,13 +4,14 @@ from io import BytesIO
 from prev_gen import Config, Previewer, Reverser
 from PIL import Image, UnidentifiedImageError
 from PIL.PngImagePlugin import PngInfo
+from prev_gen.previewer import PNGPreviewer
 
 
-def GET_ping():
+async def GET_ping():
     return 'pong', 200
 
 
-def POST_save(body=None):
+async def POST_save(body=None) -> tuple[bytes, int, dict]:
     """
     Generate a PNG from GUI
 
@@ -21,8 +22,8 @@ def POST_save(body=None):
     """
     try:
         palette = Config.read(dumps(body), output='json').palette
-    except ValueError as e:
-        return 'Could not parse configuration', 400
+    except ValueError:
+        return b'Could not parse configuration', 400, {}
     img = Previewer(palette, show=False)
     # for some reason pillow does not include metadata by default
     # write it into PngInfo before sending the file
@@ -32,10 +33,10 @@ def POST_save(body=None):
     buf = BytesIO()
     img.save(buf, format='PNG', pnginfo=meta)
     buf.seek(0)
-    return buf, 200, {'Content-Type': 'image/png'}
+    return buf.getvalue(), 200, {'Content-Type': 'image/png'}
 
 
-def POST_load(body=None):
+def POST_load(body=None) -> tuple[str | dict, int]:
     """
     Load a PNG into GUI
 
@@ -58,6 +59,7 @@ def POST_load(body=None):
         img2.text = img.text
     except AttributeError:
         return 'Image does not have metadata', 400
+    # TODO: find try/catch cases here
     palette = Reverser(img2)
     json = {}
     sett = palette[0].to_dict()

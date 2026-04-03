@@ -1,0 +1,14 @@
+[project]
+name = "prev-gen-backend"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "connexion[swagger-ui]>=3.3.0",
+    "hypercorn>=0.18.0",
+    "prev-gen>=6.0.1",
+    "python-dateutil>=2.9.0.post0",
+    "setuptools>=82.0.1",
+    "swagger-ui-bundle>=1.1.0",
+]
